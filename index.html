@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>STR MODS | مودات ستار</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@200;300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
@@ -22,10 +23,12 @@
             box-sizing: border-box;
             background-color: var(--bg-color);
             color: white;
-            font-family: 'Segoe UI', Tahoma, sans-serif;
+            /* تطبيق الخط الرفيع الناعم */
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            font-weight: 300;
         }
 
-        /* --- قسم البنر والصورة الشخصية --- */
+        /* --- البنر والصورة الشخصية --- */
         .profile-header {
             width: 100%;
             position: relative;
@@ -35,7 +38,6 @@
         .banner {
             width: 100%;
             height: 250px;
-            /* استبدل الرابط أدناه برابط البنر الخاص بك */
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://cdn.discordapp.com/banners/1331682748372488243/49d3af0028344ad3f13c6b66bbaf2b40.webp?size=1024') no-repeat center center;
             background-size: cover;
             border-bottom: 2px solid var(--main-purple);
@@ -47,11 +49,11 @@
             bottom: -50px;
             left: 50%;
             transform: translateX(-50%);
-            width: 120px;
-            height: 120px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
             background: var(--card-bg);
-            padding: 5px;
+            padding: 4px;
             border: 3px solid var(--main-purple);
             box-shadow: var(--neon-shadow);
             z-index: 5;
@@ -74,48 +76,102 @@
 
         h1 { 
             font-size: 2.2rem; 
+            font-weight: 500; /* وزن متوسط للعنوان */
             color: var(--main-purple); 
             text-align: center;
             text-shadow: 0 0 20px rgba(92, 106, 255, 0.6);
-            margin-bottom: 30px;
+            margin-bottom: 15px;
             margin-top: 20px;
         }
 
+        /* --- مربع الرسالة الترحيبية --- */
+        .welcome-box {
+            background: rgba(92, 106, 255, 0.05);
+            border: 1px solid rgba(92, 106, 255, 0.3);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            margin: 0 auto 30px;
+            max-width: 600px;
+            box-shadow: inset 0 0 10px rgba(92, 106, 255, 0.1);
+        }
+        .welcome-box p {
+            margin: 0;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        .welcome-box b { color: var(--main-purple); font-weight: 500; }
+
         .search-container { position: relative; max-width: 450px; margin: 0 auto 30px; }
-        #modSearch { width: 100%; padding: 14px 45px 14px 20px; border-radius: 50px; border: 1px solid #222; background: var(--card-bg); color: white; outline: none; box-sizing: border-box; transition: 0.3s; }
+        #modSearch { 
+            width: 100%; padding: 14px 45px 14px 20px; border-radius: 50px; border: 1px solid #222; 
+            background: var(--card-bg); color: white; outline: none; box-sizing: border-box; 
+            transition: 0.3s; font-family: inherit; font-weight: 300;
+        }
         #modSearch:focus { border-color: var(--main-purple); box-shadow: var(--neon-shadow); }
         .search-icon { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: var(--main-purple); }
 
-        .tabs-header { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
-        .tab-btn { background: var(--card-bg); border: 1px solid #222; color: white; padding: 12px 18px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; transition: 0.3s; }
-        .tab-btn i { color: var(--main-purple); }
-        .tab-btn.active { background: var(--main-purple); border-color: var(--main-purple); box-shadow: var(--neon-shadow); }
-        .tab-btn.active i { color: white; }
+        /* --- التابس --- */
+        .tabs-header { 
+            display: flex; 
+            justify-content: center; 
+            gap: 10px; 
+            flex-wrap: wrap; 
+            margin-bottom: 30px; 
+        }
+        .tab-btn { 
+            background: var(--card-bg); 
+            border: 1px solid #222; 
+            color: white; 
+            padding: 12px 18px; 
+            border-radius: 12px; 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            font-size: 0.9rem; 
+            transition: 0.3s; 
+            flex: 1 1 auto;
+            max-width: 150px; 
+            justify-content: center;
+            font-family: inherit;
+            font-weight: 300;
+        }
+        .tab-btn:hover { border-color: var(--main-purple); box-shadow: 0 0 10px rgba(92, 106, 255, 0.3); }
+        .tab-btn.active { background: var(--main-purple); border-color: var(--main-purple); box-shadow: var(--neon-shadow); font-weight: 400; }
 
-        .tab-content { display: none; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; min-height: 300px; }
+        /* نظام الشبكة (المربعات) */
+        .tab-content { display: none; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         .tab-content.active { display: grid; animation: fadeInOnly 0.4s ease forwards; }
 
         .mod-card { background: var(--card-bg); border-radius: 20px; overflow: hidden; border: 1px solid #1e1e26; display: flex; flex-direction: column; height: 100%; transition: 0.3s ease; }
-        .mod-card:hover { transform: translateY(-5px); border-color: var(--main-purple); box-shadow: 0 0 20px rgba(92, 106, 255, 0.3); }
+        .mod-card:hover { transform: translateY(-5px); border-color: var(--main-purple); }
         .mod-image { width: 100%; height: 160px; object-fit: cover; }
-        .mod-info { padding: 20px; display: flex; flex-direction: column; flex: 1; }
-        .mod-info h3 { margin: 0 0 10px; font-size: 1.2rem; }
-        .mod-info p { color: var(--text-gray); font-size: 0.9rem; line-height: 1.5; flex-grow: 1; margin-bottom: 20px; }
-        .mod-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-
-        .download-btn { flex: 1; padding: 12px; background: #1a1a24; color: var(--main-purple); text-decoration: none; border-radius: 12px; font-weight: bold; text-align: center; border: 1px solid rgba(92, 106, 255, 0.3); display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s; }
-        .download-btn:hover { background: var(--main-purple); color: white !important; box-shadow: var(--neon-shadow); }
-        .mod-version { padding: 8px 12px; background: #0b0b0e; border-radius: 10px; font-size: 0.75rem; color: var(--text-gray); border: 1px solid #222; }
+        .mod-info { padding: 15px; display: flex; flex-direction: column; flex: 1; }
+        .mod-info h3 { margin: 0 0 10px; font-size: 1.1rem; color: #fff; font-weight: 400; }
+        .mod-info p { color: var(--text-gray); font-size: 0.85rem; line-height: 1.4; flex-grow: 1; margin-bottom: 15px; font-weight: 300; }
+        
+        .mod-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+        .download-btn { flex: 1; padding: 10px; background: #1a1a24; color: var(--main-purple); text-decoration: none; border-radius: 10px; font-weight: 400; text-align: center; border: 1px solid rgba(92, 106, 255, 0.3); display: flex; align-items: center; justify-content: center; gap: 5px; transition: 0.3s; font-family: inherit; }
+        .download-btn:hover { background: var(--main-purple); color: white !important; }
+        .mod-version { padding: 6px 10px; background: #0b0b0e; border-radius: 8px; font-size: 0.7rem; color: var(--text-gray); border: 1px solid #222; }
 
         .hidden { display: none !important; }
-
         @keyframes fadeInOnly { from { opacity: 0; } to { opacity: 1; } }
 
         @media (max-width: 600px) {
-            .tab-content { grid-template-columns: 1fr; }
-            .tab-btn { flex: 1 1 42%; justify-content: center; font-size: 0.8rem; }
+            .tab-content { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 5px; }
             .banner { height: 160px; }
             .avatar-container { width: 90px; height: 90px; bottom: -45px; }
+            .mod-image { height: 100px; }
+            .mod-info h3 { font-size: 0.85rem; }
+            .mod-info p { font-size: 0.7rem; -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
+            .mod-footer { flex-direction: column; }
+            .download-btn { width: 100%; font-size: 0.75rem; }
+            .mod-version { display: none; }
+            .tab-btn { flex: 1 1 42%; max-width: none; }
         }
     </style>
 </head>
@@ -129,7 +185,11 @@
 </div>
 
 <div class="container">
-    <h1><i class="fas fa-cubes"></i> STR MODS</h1>
+    <h1>STR MODS</h1>
+
+    <div class="welcome-box">
+        <p>أهلاً بك في <b>موقع مودات ستار</b>، هنا تجد أفضل مودات ماين كرافت المختارة بعناية. استمتع بالتصفح والتحميل!</p>
+    </div>
 
     <div class="search-container">
         <i class="fas fa-search search-icon"></i>
@@ -150,9 +210,6 @@
 </div>
 
 <script>
-    /* يا مدين، هذا هو نظام الإضافة العمودي اللي طلبته. 
-       فقط انسخ الكتلة {} وأضفها تحت بعضها.
-    */
     const myMods = [
         { 
             id: 'textures', 
