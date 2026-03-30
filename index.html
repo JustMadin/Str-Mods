@@ -1,237 +1,245 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>نظام ريبو كوينز</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>STR MODS | iUncle Madin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0b0b0e;
+            --card-bg: #121218;
+            --main-purple: #5c6aff;
+            --neon-shadow: 0 0 15px rgba(92, 106, 255, 0.5);
+            --text-gray: #b0b0b0;
+        }
 
-<style>
-:root{
-  --bg:#0f1117;
-  --card:#161a23;
-  --border:#23283b;
-  --text:#e6e6eb;
-  --muted:#9aa0b3;
-  --main:#7c7cff;
-  --accent:#00d4ff;
-  --gold:#f1c40f;
-}
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: var(--bg-color);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
 
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family: "Segoe UI", Tahoma, sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.7;
-}
+        /* --- قسم البنر والصورة الشخصية --- */
+        .profile-header {
+            width: 100%;
+            position: relative;
+            margin-bottom: 70px;
+        }
 
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:30px 20px;
-}
+        .banner {
+            width: 100%;
+            height: 250px;
+            /* استبدل الرابط أدناه برابط البنر الخاص بك */
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://cdn.discordapp.com/banners/1331682748372488243/49d3af0028344ad3f13c6b66bbaf2b40.webp?size=1024') no-repeat center center;
+            background-size: cover;
+            border-bottom: 2px solid var(--main-purple);
+            box-shadow: var(--neon-shadow);
+        }
 
-h1{
-  text-align:center;
-  color:var(--accent);
-  margin-bottom:10px;
-}
-.subtitle{
-  text-align:center;
-  color:var(--muted);
-  margin-bottom:40px;
-}
+        .avatar-container {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            padding: 5px;
+            border: 3px solid var(--main-purple);
+            box-shadow: var(--neon-shadow);
+            z-index: 5;
+        }
 
-.section{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:20px;
-  margin-bottom:30px;
-}
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
 
-.section h2{
-  margin-top:0;
-  color:var(--main);
-  border-bottom:1px solid var(--border);
-  padding-bottom:10px;
-}
+        .container { 
+            width: 100%;
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 20px 15px;
+            box-sizing: border-box;
+        }
 
-/* cards */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:15px;
-}
+        h1 { 
+            font-size: 2.2rem; 
+            color: var(--main-purple); 
+            text-align: center;
+            text-shadow: 0 0 20px rgba(92, 106, 255, 0.6);
+            margin-bottom: 30px;
+            margin-top: 20px;
+        }
 
-.card{
-  background:#11141c;
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:15px;
-}
+        .search-container { position: relative; max-width: 450px; margin: 0 auto 30px; }
+        #modSearch { width: 100%; padding: 14px 45px 14px 20px; border-radius: 50px; border: 1px solid #222; background: var(--card-bg); color: white; outline: none; box-sizing: border-box; transition: 0.3s; }
+        #modSearch:focus { border-color: var(--main-purple); box-shadow: var(--neon-shadow); }
+        .search-icon { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: var(--main-purple); }
 
-.card h3{
-  margin:0 0 8px;
-  color:var(--accent);
-}
+        .tabs-header { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
+        .tab-btn { background: var(--card-bg); border: 1px solid #222; color: white; padding: 12px 18px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; transition: 0.3s; }
+        .tab-btn i { color: var(--main-purple); }
+        .tab-btn.active { background: var(--main-purple); border-color: var(--main-purple); box-shadow: var(--neon-shadow); }
+        .tab-btn.active i { color: white; }
 
-.price{
-  color:var(--gold);
-  font-weight:bold;
-}
+        .tab-content { display: none; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; min-height: 300px; }
+        .tab-content.active { display: grid; animation: fadeInOnly 0.4s ease forwards; }
 
-/* tables */
-table{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:10px;
-}
-th,td{
-  padding:10px;
-  border-bottom:1px solid var(--border);
-  text-align:right;
-}
-th{
-  color:var(--accent);
-  font-weight:600;
-}
-tr:last-child td{border-bottom:none}
+        .mod-card { background: var(--card-bg); border-radius: 20px; overflow: hidden; border: 1px solid #1e1e26; display: flex; flex-direction: column; height: 100%; transition: 0.3s ease; }
+        .mod-card:hover { transform: translateY(-5px); border-color: var(--main-purple); box-shadow: 0 0 20px rgba(92, 106, 255, 0.3); }
+        .mod-image { width: 100%; height: 160px; object-fit: cover; }
+        .mod-info { padding: 20px; display: flex; flex-direction: column; flex: 1; }
+        .mod-info h3 { margin: 0 0 10px; font-size: 1.2rem; }
+        .mod-info p { color: var(--text-gray); font-size: 0.9rem; line-height: 1.5; flex-grow: 1; margin-bottom: 20px; }
+        .mod-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 
-.badge{
-  background:#1e2440;
-  color:#cfd2ff;
-  padding:3px 8px;
-  border-radius:6px;
-  font-size:12px;
-}
-.rare{
-  background:#3a2f00;
-  color:#f1c40f;
-}
-</style>
+        .download-btn { flex: 1; padding: 12px; background: #1a1a24; color: var(--main-purple); text-decoration: none; border-radius: 12px; font-weight: bold; text-align: center; border: 1px solid rgba(92, 106, 255, 0.3); display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s; }
+        .download-btn:hover { background: var(--main-purple); color: white !important; box-shadow: var(--neon-shadow); }
+        .mod-version { padding: 8px 12px; background: #0b0b0e; border-radius: 10px; font-size: 0.75rem; color: var(--text-gray); border: 1px solid #222; }
+
+        .hidden { display: none !important; }
+
+        @keyframes fadeInOnly { from { opacity: 0; } to { opacity: 1; } }
+
+        @media (max-width: 600px) {
+            .tab-content { grid-template-columns: 1fr; }
+            .tab-btn { flex: 1 1 42%; justify-content: center; font-size: 0.8rem; }
+            .banner { height: 160px; }
+            .avatar-container { width: 90px; height: 90px; bottom: -45px; }
+        }
+    </style>
 </head>
-
 <body>
+
+<div class="profile-header">
+    <div class="banner"></div>
+    <div class="avatar-container">
+        <img src="https://cdn.discordapp.com/icons/1331682748372488243/27cb0faccfbafe63dd4ea954dcc80513.webp?size=1024" alt="Madin">
+    </div>
+</div>
+
 <div class="container">
+    <h1><i class="fas fa-cubes"></i> STR MODS</h1>
 
-<h1>نظام ريبو كوينز</h1>
-<p class="subtitle">
-نظام عملة – بطاقات – مكافآت – رتب | تصميم توضيحي للسيرفر
-</p>
+    <div class="search-container">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="modSearch" placeholder="ابحث عن مود..." onkeyup="filterMods()">
+    </div>
 
-<!-- العملة -->
-<div class="section">
-<h2>💠 نظام العملة</h2>
-<p>
-العملة الرسمية للسيرفر هي <b>ريبو كوينز</b>، ويتم الحصول عليها من:
-</p>
-<ul>
-<li>الفعاليات</li>
-<li>المهام والرتب</li>
-<li>الجوائز الخاصة</li>
-</ul>
-<p>
-<b>سعر التحويل:</b><br>
-كل <span class="badge">10,000 كردت ديسكورد</span> = <span class="badge">100 ريبو كوينز</span>
-</p>
+    <div class="tabs-header">
+        <button class="tab-btn active" onclick="openTab(event, 'pvp')"><i class="fas fa-crosshairs"></i> PVP</button>
+        <button class="tab-btn" onclick="openTab(event, 'textures')"><i class="fas fa-paint-brush"></i> Textures</button>
+        <button class="tab-btn" onclick="openTab(event, 'survival')"><i class="fas fa-tree"></i> Survival</button>
+        <button class="tab-btn" onclick="openTab(event, 'java')"><i class="fas fa-shield-alt"></i> Java</button>
+    </div>
+
+    <div id="pvp" class="tab-content active"></div>
+    <div id="textures" class="tab-content"></div>
+    <div id="survival" class="tab-content"></div>
+    <div id="java" class="tab-content"></div>
 </div>
 
-<!-- الشوب -->
-<div class="section">
-<h2>🛒 شوب البطاقات</h2>
+<script>
+    /* يا مدين، هذا هو نظام الإضافة العمودي اللي طلبته. 
+       فقط انسخ الكتلة {} وأضفها تحت بعضها.
+    */
+    const myMods = [
+        { 
+            id: 'textures', 
+            name: 'نيوب كومبلينتري', 
+            desc: 'جمالية وظلال ومناظر خلابة وجميلة جداً.', 
+            link: 'https://www.mediafire.com/file/88ewfuw3jdlb8lc/Newb+Complementary+REIMAGINED+-+Android.mcpack/file', 
+            version: '1.26+', 
+            image: 'https://i.imgur.com/C1QRBm6.jpeg' 
+        },
+        { 
+            id: 'textures', 
+            name: 'الانميشن الواقعي', 
+            desc: 'انميشن يضيف واقعية وجمالية لحركة اللاعب.', 
+            link: 'https://www.mediafire.com/file/5wd6y59qk8mhmfy/ريسوس+الانميشن.mcpack/file', 
+            version: '1.21+', 
+            image: 'https://i.imgur.com/Gf3hDYf.jpeg' 
+        },
+        { 
+            id: 'survival', 
+            name: 'مود الخريطة', 
+            desc: 'جودة عالية، مُحسّن، إنجازات استكشف العالم الان!', 
+            link: 'https://www.mediafire.com/file/eyqz18q10j9o2kl/EWM+V2.0.1+-+MC+26.3.mcaddon/file', 
+            version: '1.26+', 
+            image: 'https://i.imgur.com/OYhf8Go.png' 
+        },
+        { 
+            id: 'survival', 
+            name: 'فين ماينر', 
+            desc: 'إضافة متطورة لاستخراج العروق وقاطع الأشجار.', 
+            link: 'https://www.mediafire.com/file/iqn6azoy8uqodkz/Ore+++Tree_Vein_Miner+v2+Release.mcpack/file', 
+            version: '1.21+', 
+            image: 'https://i.imgur.com/h8hgkAy.gif' 
+        },
+        { 
+            id: 'survival', 
+            name: 'الأثاث الحديث', 
+            desc: 'إضافة ديكور تضم أكثر من 750 قطعة عصرية.', 
+            link: 'https://www.mediafire.com/file/r28vm52bgcb7af3/Modren+Furniture.mcpack/file', 
+            version: 'all', 
+            image: 'https://i.imgur.com/woeosOr.jpeg' 
+        },
+        { 
+            id: 'survival', 
+            name: 'التحول الى الوحوش', 
+            desc: 'اسوار يسمح للاعبين بالتحول إلى عدة وحوش!', 
+            link: 'https://www.mediafire.com/file/0eta2tts24ucbc1/Morphing+Bracelet.mcaddon/file', 
+            version: '1.26', 
+            image: 'https://i.imgur.com/dnmSQwA.png' 
+        }
+    ];
 
-<div class="grid">
+    function render() {
+        document.querySelectorAll('.tab-content').forEach(c => c.innerHTML = "");
+        myMods.forEach(m => {
+            const container = document.getElementById(m.id);
+            if (container) {
+                container.innerHTML += `
+                    <div class="mod-card">
+                        <img src="${m.image}" class="mod-image">
+                        <div class="mod-info">
+                            <h3>${m.name}</h3>
+                            <p>${m.desc}</p>
+                            <div class="mod-footer">
+                                <a href="${m.link}" target="_blank" class="download-btn">تحميل <i class="fas fa-download"></i></a>
+                                <div class="mod-version">${m.version}</div>
+                            </div>
+                        </div>
+                    </div>`;
+            }
+        });
+    }
 
-<div class="card">
-<h3>حماية البطاقة</h3>
-<p>تحميك من تأثير بطاقة واحدة يستخدمها خصمك.</p>
-<p class="price">1000 ريبو كوينز</p>
-</div>
+    function openTab(e, name) {
+        document.querySelectorAll('.tab-content, .tab-btn').forEach(el => el.classList.remove('active'));
+        document.getElementById(name).classList.add('active');
+        e.currentTarget.classList.add('active');
+    }
 
-<div class="card">
-<h3>مضاعفة المكافأة</h3>
-<p>تضاعف مكافأتك النهائية.</p>
-<p class="price">1250 ريبو كوينز</p>
-</div>
+    function filterMods() {
+        let val = document.getElementById('modSearch').value.toLowerCase();
+        document.querySelectorAll('.mod-card').forEach(card => {
+            let txt = card.innerText.toLowerCase();
+            card.classList.toggle('hidden', !txt.includes(val));
+        });
+    }
 
-<div class="card">
-<h3>زيادة فرصة الفوز</h3>
-<p>ترفع فرصة الفوز في الفعالية.</p>
-<p class="price">1340 ريبو كوينز</p>
-</div>
-
-<div class="card">
-<h3>عكس الترتيب</h3>
-<p>يعكس ترتيب الفائزين بالكامل.</p>
-<p class="price">1700 ريبو كوينز</p>
-</div>
-
-</div>
-</div>
-
-<!-- بطاقات الجوائز -->
-<div class="section">
-<h2>🎁 بطاقات الجوائز</h2>
-
-<div class="grid">
-
-<div class="card">
-<h3>بطاقة الدمج <span class="badge rare">نادرة</span></h3>
-<ul>
-<li>دمج بطاقتين في جولة واحدة</li>
-<li>❌ لا يمكن دمج بطاقتي مضاعفة</li>
-<li>❌ لا يمكن دمج بطاقة تبديل مراكز</li>
-</ul>
-</div>
-
-<div class="card">
-<h3>مدين هاي جوكر <span class="badge rare">أسطورية</span></h3>
-<ul>
-<li>زيادة فرصة الفوز 25%</li>
-<li>إلغاء تأثير بطاقة واحدة من خصمك للأبد</li>
-<li>تبديل مركزك من 10 إلى 6 (تختار)</li>
-<li>مضاعفة المكافأة 15%</li>
-</ul>
-</div>
-
-</div>
-</div>
-
-<!-- الرتب -->
-<div class="section">
-<h2>🏆 الرتب والمكافآت</h2>
-<p style="color:var(--muted)">
-الترتيب من الأصعب إلى الأسهل – كل ما زادت الصعوبة زاد الراتب.
-</p>
-
-<h3>الإدارة</h3>
-<table>
-<tr><th>الرتبة</th><th>الراتب</th></tr>
-<tr><td>رئيس الإدارة</td><td>15,000</td></tr>
-<tr><td>مسؤول القبول</td><td>13,500</td></tr>
-<tr><td>مسؤول الشروحات</td><td>12,500</td></tr>
-<tr><td>مسؤول الفعاليات</td><td>12,000</td></tr>
-<tr><td>مسؤول المودات</td><td>11,500</td></tr>
-</table>
-
-<h3>الداخلية</h3>
-<table>
-<tr><th>الرتبة</th><th>الراتب</th></tr>
-<tr><td>رئيس داخلية</td><td>11,500</td></tr>
-<tr><td>نائب داخلية</td><td>11,000</td></tr>
-<tr><td>مساعد داخلية</td><td>10,500</td></tr>
-<tr><td>5D</td><td>10,000</td></tr>
-<tr><td>4D</td><td>9,500</td></tr>
-<tr><td>3D</td><td>9,000</td></tr>
-<tr><td>2D</td><td>8,500</td></tr>
-<tr><td>1D</td><td>8,000</td></tr>
-<tr><td>منظم داخلية</td><td>7,500</td></tr>
-</table>
-
-</div>
-
-</div>
+    render();
+</script>
 </body>
 </html>
