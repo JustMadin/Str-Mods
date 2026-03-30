@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --bg-color: #0b0b0e;
-            --card-bg: #121218;
-            --main-purple: #5c6aff;
-            --neon-shadow: 0 0 15px rgba(92, 106, 255, 0.5);
+            /* الألوان الملكية المطلوبة */
+            --bg-color: #07070a; 
+            --card-bg: #07070c; 
+            --main-gold: #d4af37; 
+            --border-color: #2d2d10; 
             --text-gray: #b0b0b0;
+            --gold-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
         }
 
         html, body {
@@ -23,7 +25,6 @@
             box-sizing: border-box;
             background-color: var(--bg-color);
             color: white;
-            /* تطبيق الخط الرفيع الناعم */
             font-family: 'IBM Plex Sans Arabic', sans-serif;
             font-weight: 300;
         }
@@ -38,10 +39,10 @@
         .banner {
             width: 100%;
             height: 250px;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://cdn.discordapp.com/banners/1331682748372488243/49d3af0028344ad3f13c6b66bbaf2b40.webp?size=1024') no-repeat center center;
+            background: linear-gradient(rgba(7, 7, 10, 0.4), rgba(7, 7, 10, 0.8)), url('https://cdn.discordapp.com/banners/1331682748372488243/49d3af0028344ad3f13c6b66bbaf2b40.webp?size=1024') no-repeat center center;
             background-size: cover;
-            border-bottom: 2px solid var(--main-purple);
-            box-shadow: var(--neon-shadow);
+            border-bottom: 2px solid var(--border-color);
+            box-shadow: var(--gold-shadow);
         }
 
         .avatar-container {
@@ -54,8 +55,8 @@
             border-radius: 50%;
             background: var(--card-bg);
             padding: 4px;
-            border: 3px solid var(--main-purple);
-            box-shadow: var(--neon-shadow);
+            border: 3px solid var(--main-gold);
+            box-shadow: var(--gold-shadow);
             z-index: 5;
         }
 
@@ -76,42 +77,40 @@
 
         h1 { 
             font-size: 2.2rem; 
-            font-weight: 500; /* وزن متوسط للعنوان */
-            color: var(--main-purple); 
+            font-weight: 500;
+            color: var(--main-gold); 
             text-align: center;
-            text-shadow: 0 0 20px rgba(92, 106, 255, 0.6);
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
             margin-bottom: 15px;
             margin-top: 20px;
         }
 
         /* --- مربع الرسالة الترحيبية --- */
         .welcome-box {
-            background: rgba(92, 106, 255, 0.05);
-            border: 1px solid rgba(92, 106, 255, 0.3);
+            background: rgba(45, 45, 16, 0.2);
+            border: 1px solid var(--border-color);
             border-radius: 15px;
             padding: 15px;
             text-align: center;
             margin: 0 auto 30px;
             max-width: 600px;
-            box-shadow: inset 0 0 10px rgba(92, 106, 255, 0.1);
         }
         .welcome-box p {
             margin: 0;
             color: var(--text-gray);
             font-size: 0.95rem;
             line-height: 1.6;
-            font-weight: 300;
         }
-        .welcome-box b { color: var(--main-purple); font-weight: 500; }
+        .welcome-box b { color: var(--main-gold); font-weight: 500; }
 
         .search-container { position: relative; max-width: 450px; margin: 0 auto 30px; }
         #modSearch { 
-            width: 100%; padding: 14px 45px 14px 20px; border-radius: 50px; border: 1px solid #222; 
+            width: 100%; padding: 14px 45px 14px 20px; border-radius: 50px; border: 1px solid var(--border-color); 
             background: var(--card-bg); color: white; outline: none; box-sizing: border-box; 
             transition: 0.3s; font-family: inherit; font-weight: 300;
         }
-        #modSearch:focus { border-color: var(--main-purple); box-shadow: var(--neon-shadow); }
-        .search-icon { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: var(--main-purple); }
+        #modSearch:focus { border-color: var(--main-gold); box-shadow: var(--gold-shadow); }
+        .search-icon { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: var(--main-gold); }
 
         /* --- التابس --- */
         .tabs-header { 
@@ -123,7 +122,7 @@
         }
         .tab-btn { 
             background: var(--card-bg); 
-            border: 1px solid #222; 
+            border: 1px solid var(--border-color); 
             color: white; 
             padding: 12px 18px; 
             border-radius: 12px; 
@@ -137,26 +136,27 @@
             max-width: 150px; 
             justify-content: center;
             font-family: inherit;
-            font-weight: 300;
         }
-        .tab-btn:hover { border-color: var(--main-purple); box-shadow: 0 0 10px rgba(92, 106, 255, 0.3); }
-        .tab-btn.active { background: var(--main-purple); border-color: var(--main-purple); box-shadow: var(--neon-shadow); font-weight: 400; }
+        .tab-btn:hover { border-color: var(--main-gold); box-shadow: 0 0 10px rgba(212, 175, 55, 0.2); }
+        .tab-btn.active { background: var(--main-gold); border-color: var(--main-gold); color: #07070a; font-weight: 500; box-shadow: var(--gold-shadow); }
 
-        /* نظام الشبكة (المربعات) */
+        /* نظام الشبكة */
         .tab-content { display: none; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         .tab-content.active { display: grid; animation: fadeInOnly 0.4s ease forwards; }
 
-        .mod-card { background: var(--card-bg); border-radius: 20px; overflow: hidden; border: 1px solid #1e1e26; display: flex; flex-direction: column; height: 100%; transition: 0.3s ease; }
-        .mod-card:hover { transform: translateY(-5px); border-color: var(--main-purple); }
-        .mod-image { width: 100%; height: 160px; object-fit: cover; }
+        .mod-card { background: var(--card-bg); border-radius: 20px; overflow: hidden; border: 1px solid var(--border-color); display: flex; flex-direction: column; height: 100%; transition: 0.3s ease; }
+        .mod-card:hover { transform: translateY(-5px); border-color: var(--main-gold); box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        .mod-image { width: 100%; height: 160px; object-fit: cover; filter: brightness(0.8); transition: 0.3s; }
+        .mod-card:hover .mod-image { filter: brightness(1); }
+        
         .mod-info { padding: 15px; display: flex; flex-direction: column; flex: 1; }
-        .mod-info h3 { margin: 0 0 10px; font-size: 1.1rem; color: #fff; font-weight: 400; }
-        .mod-info p { color: var(--text-gray); font-size: 0.85rem; line-height: 1.4; flex-grow: 1; margin-bottom: 15px; font-weight: 300; }
+        .mod-info h3 { margin: 0 0 10px; font-size: 1.1rem; color: #fff; font-weight: 500; }
+        .mod-info p { color: var(--text-gray); font-size: 0.85rem; line-height: 1.4; flex-grow: 1; margin-bottom: 15px; }
         
         .mod-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-        .download-btn { flex: 1; padding: 10px; background: #1a1a24; color: var(--main-purple); text-decoration: none; border-radius: 10px; font-weight: 400; text-align: center; border: 1px solid rgba(92, 106, 255, 0.3); display: flex; align-items: center; justify-content: center; gap: 5px; transition: 0.3s; font-family: inherit; }
-        .download-btn:hover { background: var(--main-purple); color: white !important; }
-        .mod-version { padding: 6px 10px; background: #0b0b0e; border-radius: 8px; font-size: 0.7rem; color: var(--text-gray); border: 1px solid #222; }
+        .download-btn { flex: 1; padding: 10px; background: transparent; color: var(--main-gold); text-decoration: none; border-radius: 10px; font-weight: 500; text-align: center; border: 1px solid var(--main-gold); display: flex; align-items: center; justify-content: center; gap: 5px; transition: 0.3s; font-family: inherit; }
+        .download-btn:hover { background: var(--main-gold); color: #07070a !important; }
+        .mod-version { padding: 6px 10px; background: #07070a; border-radius: 8px; font-size: 0.7rem; color: var(--main-gold); border: 1px solid var(--border-color); }
 
         .hidden { display: none !important; }
         @keyframes fadeInOnly { from { opacity: 0; } to { opacity: 1; } }
@@ -167,11 +167,10 @@
             .avatar-container { width: 90px; height: 90px; bottom: -45px; }
             .mod-image { height: 100px; }
             .mod-info h3 { font-size: 0.85rem; }
-            .mod-info p { font-size: 0.7rem; -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
+            .mod-info p { display: none; }
             .mod-footer { flex-direction: column; }
             .download-btn { width: 100%; font-size: 0.75rem; }
             .mod-version { display: none; }
-            .tab-btn { flex: 1 1 42%; max-width: none; }
         }
     </style>
 </head>
@@ -185,10 +184,10 @@
 </div>
 
 <div class="container">
-    <h1>STR MODS</h1>
+    <h1>STR <span style="color:white">MODS</span></h1>
 
     <div class="welcome-box">
-        <p>أهلاً بك في <b>منصة مودات ستار</b>، هنا تجد أفضل مودات ماين كرافت المختارة بعناية. استمتع بالتصفح والتحميل!</p>
+        <p>أهلاً بك في <b>موقع مودات ستار</b>، هنا تجد أفضل مودات ماين كرافت الملكية. استمتع بالتصفح والتحميل!</p>
     </div>
 
     <div class="search-container">
